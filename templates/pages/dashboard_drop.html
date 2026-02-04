@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Dashboard - Habit Tracker{% endblock %}
+
+{% block content %}
+<div class="dashboard-drop">
+    <div class="dashboard-header">
+        <h1>{{ habit.name }} Support</h1>
+        <p class="subtitle">You're doing great. Stay strong.</p>
+    </div>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-value">🔥 {{ current_streak }}</div>
+            <div class="stat-label">Days Resisted</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">✨ {{ best_streak }}</div>
+            <div class="stat-label">Best Streak</div>
+        </div>
+    </div>
+
+    <div class="today-status">
+        <h2>You Resisted Today</h2>
+        <div class="status-card motivation">
+            <p>You chose growth over habit today. That's real strength.</p>
+        </div>
+    </div>
+
+    <div class="replacement-activities">
+        <h2>Instead, Try These</h2>
+        <div class="video-grid">
+            <!-- Replacement content recommendations -->
+        </div>
+    </div>
+</div>
+{% endblock %}

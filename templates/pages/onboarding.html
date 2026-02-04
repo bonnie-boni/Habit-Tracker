@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Onboarding - Habit Tracker{% endblock %}
+
+{% block content %}
+<div class="onboarding-page">
+    <div class="onboarding-container">
+        <h1>Welcome to Habit Tracker!</h1>
+        <p class="subtitle">Let's personalize your experience</p>
+
+        <form method="POST" class="onboarding-form">
+            {% csrf_token %}
+
+            <div class="form-section">
+                <label for="habitType">What would you like to do?</label>
+                <select name="habit_type" id="habitType" required>
+                    <option value="">Select...</option>
+                    <option value="build">Build a positive habit</option>
+                    <option value="drop">Drop a harmful habit</option>
+                </select>
+            </div>
+
+            <div class="form-section">
+                <label for="category">Select a category</label>
+                <select name="category" id="category" required>
+                    <option value="">Select...</option>
+                    {% for value, label in categories %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-section">
+                <label for="habitName">What's the habit?</label>
+                <input type="text" name="name" id="habitName" placeholder="e.g., Read for 30 minutes daily" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large">Get Started</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

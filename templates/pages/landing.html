@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Landing - Habit Tracker{% endblock %}
+
+{% block content %}
+<div class="landing-page">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Habits</h1>
+            <p>Build positive habits. Drop harmful ones. Track your progress.</p>
+            <a href="{% url 'login' %}" class="btn btn-primary btn-large">Get Started</a>
+        </div>
+        <div class="hero-image">
+            <!-- Placeholder for hero image -->
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🎯 Build Habits</h3>
+                <p>Encourage repetition of positive actions through consistent tracking and motivation.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🚫 Drop Habits</h3>
+                <p>Resist harmful behaviors with replacement content and supportive redirects.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 Track Progress</h3>
+                <p>Monitor your streaks, sessions, and growth over time with insightful analytics.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to make a change?</h2>
+        <a href="{% url 'login' %}" class="btn btn-primary">Start Your Journey</a>
+    </section>
+
+    <footer class="footer">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+    </footer>
+</div>
+{% endblock %}

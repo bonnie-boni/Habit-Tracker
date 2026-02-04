@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Watch - Habit Tracker{% endblock %}
+
+{% block content %}
+<div class="video-watch-page">
+    <div class="video-container">
+        <h1>Educational Content</h1>
+        
+        <div class="video-player">
+            <!-- Video player will be embedded here -->
+            <p>Video player placeholder</p>
+        </div>
+
+        <div class="video-controls">
+            <button class="btn btn-primary">Play</button>
+            <button class="btn btn-secondary" id="doneBtn">Done for Today</button>
+        </div>
+    </div>
+
+    <div class="related-content">
+        <h2>Related Videos</h2>
+        <div class="content-grid">
+            <!-- Related video recommendations -->
+        </div>
+    </div>
+</div>
+{% endblock %}

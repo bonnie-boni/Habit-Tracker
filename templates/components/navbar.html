@@ -1,0 +1,43 @@
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-left">
+            <a href="{% url 'landing' %}" class="navbar-logo">
+                <span class="logo-icon">🎯</span>
+                <span class="logo-text">Habit Tracker</span>
+            </a>
+        </div>
+
+        <div class="navbar-center">
+            {% if user.is_authenticated %}
+                <div class="streak-indicator">
+                    <span class="streak-flame">🔥</span>
+                    <span class="streak-count">{{ user.habits.first.current_streak|default:"0" }}</span>
+                    <span class="streak-label">day streak</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="navbar-right">
+            <button class="theme-toggle" id="themeToggle">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+
+            {% if user.is_authenticated %}
+                <div class="profile-dropdown">
+                    <button class="profile-button" id="profileButton">
+                        {% if user.profile.profile_picture %}
+                            <img src="{{ user.profile.profile_picture.url }}" alt="Profile">
+                        {% else %}
+                            <span>{{ user.first_name|first|upper|default:user.username|first|upper }}</span>
+                        {% endif %}
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="{% url 'profile' %}">Profile</a>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>

@@ -1,36 +1,196 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Habit Tracker - Django Application
 
-## Getting Started
+A comprehensive web-based habit transformation platform combining a Django backend with browser extension integration.
 
-First, run the development server:
+## ✨ Features
 
+- **Build & Drop Habits**: Support for both positive habit building and harmful habit elimination
+- **Progress Tracking**: Streak counters, session tracking, and detailed analytics
+- **Content Library**: Curated articles, videos, and resources
+- **Event Tracking**: Detailed event logging for accountability
+- **User Profiles**: Customizable profiles with theme preferences
+- **Responsive Design**: Dark/light theme toggle with mobile support
+- **Dashboard**: Personalized dashboards based on habit type
+
+## 🏗️ Architecture
+
+### Apps Structure
+- **users**: User authentication and profile management
+- **habits**: Core habit and session management
+- **content**: Content library and recommendations
+- **analytics**: User statistics and performance tracking
+- **events**: Event logging and tracking
+- **config**: Django configuration
+
+### Technology Stack
+- Backend: Django 6.0+
+- Database: SQLite (development), PostgreSQL (production)
+- Frontend: Django Templates + Vanilla JavaScript
+- Styling: Custom CSS with theme variables
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.8+
+- pip
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd habit_tracker
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Create a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Install dependencies:
+```bash
+pip install django pillow
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Apply migrations:
+```bash
+python manage.py migrate
+```
 
-## Learn More
+5. Create a superuser:
+```bash
+python manage.py createsuperuser
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Run the development server:
+```bash
+python manage.py runserver
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+7. Access the application:
+   - Website: http://localhost:8000
+   - Admin: http://localhost:8000/admin
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
+See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed folder and page information.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛣️ URL Endpoints
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Public Routes
+- `/` - Landing page
+- `/login/` - User login
+- `/logout/` - User logout
+
+### Authenticated Routes
+- `/habits/dashboard/` - Main dashboard
+- `/habits/onboarding/` - Habit setup wizard
+- `/habits/read/` - Reading interface
+- `/habits/watch/` - Video player
+- `/users/profile/` - Profile settings
+- `/analytics/` - Performance analytics
+- `/content/` - Content library
+- `/events/log/` - Event history
+
+### Admin
+- `/admin/` - Django admin panel
+
+## 🗄️ Models Overview
+
+### Habit
+- Type: build or drop
+- Category: reading, fitness, meditation, learning, addiction, etc.
+- Tracking: current_streak, best_streak
+
+### UserProfile
+- Extended user information
+- Theme preferences
+- Profile customization
+
+### Session
+- Temporary reading/activity sessions
+- Progress tracking
+- Completion status
+
+### Event
+- Low-level action tracking
+- Types: read, blocked, resisted, completed
+- Timestamped for accountability
+
+### AnalyticsData
+- Aggregated user statistics
+- Session counts, reading time, resistances
+
+## 🎨 Theming
+
+### Dark Mode (Default)
+- Primary: `#1a1a1a`
+- Secondary: `#2d2d2d`
+
+### Light Mode
+- Primary: `#ffffff`
+- Secondary: `#f5f5f5`
+
+Theme toggle available in navbar and profile settings.
+
+## 🔐 Security Features
+
+- Django CSRF protection
+- User authentication required for protected views
+- OAuth integration ready (Google)
+- Media file handling with proper permissions
+
+## 📊 Available Analytics
+
+- Total sessions completed
+- Reading time tracking
+- Resistance counts
+- Monthly performance breakdown
+- Streak trends and milestones
+- Insight generation
+
+## 🧪 Testing
+
+Run tests with:
+```bash
+python manage.py test
+```
+
+## 🚧 Development Roadmap
+
+- [ ] Google OAuth integration
+- [ ] Advanced analytics with charts
+- [ ] PDF and video viewer implementation
+- [ ] Browser extension finalization
+- [ ] Notification system
+- [ ] ML-powered recommendations
+- [ ] Mobile app
+- [ ] Community features
+
+## 📄 Configuration
+
+### settings.py Key Settings
+- `INSTALLED_APPS`: Configured with all required apps
+- `TEMPLATES`: Pointing to custom templates folder
+- `STATIC_FILES`: Static file configuration
+- `MEDIA_FILES`: User uploads handling
+
+## 🤝 Contributing
+
+Development setup:
+1. Make changes to models/views
+2. Create migrations: `python manage.py makemigrations`
+3. Apply migrations: `python manage.py migrate`
+4. Run tests: `python manage.py test`
+
+## 📝 License
+
+All rights reserved © 2026 Habit Tracker
+
+## 🆘 Support
+
+For issues and questions, refer to the [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed architecture information.
+
+---
+
+**Ready to build better habits?** Start at `http://localhost:8000` 🎯

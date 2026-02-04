@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Analytics - Habit Tracker{% endblock %}
+
+{% block content %}
+<div class="analytics-page">
+    <div class="analytics-header">
+        <h1>Your Progress</h1>
+        <p>Track your habits and celebrate your growth</p>
+    </div>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <h3>Total Sessions</h3>
+            <div class="metric-value">{{ analytics.total_sessions }}</div>
+        </div>
+        <div class="metric-card">
+            <h3>Reading Time</h3>
+            <div class="metric-value">{{ analytics.total_reading_time }}m</div>
+        </div>
+        <div class="metric-card">
+            <h3>Resistances</h3>
+            <div class="metric-value">{{ analytics.total_resistances }}</div>
+        </div>
+    </div>
+
+    <div class="charts-section">
+        <h2>Monthly Performance</h2>
+        <div class="chart-container">
+            <!-- Chart visualization will go here -->
+            <canvas id="performanceChart"></canvas>
+        </div>
+    </div>
+
+    <div class="monthly-stats">
+        <h2>Monthly Breakdown</h2>
+        <table class="stats-table">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Sessions</th>
+                    <th>Best Streak</th>
+                    <th>Total Minutes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stat in monthly_stats %}
+                    <tr>
+                        <td>{{ stat.month|date:"M Y" }}</td>
+                        <td>{{ stat.sessions_completed }}</td>
+                        <td>{{ stat.best_streak }}</td>
+                        <td>{{ stat.total_minutes }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">No data yet. Keep building your habits!</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="insights">
+        <h2>Your Insights</h2>
+        <p>Keep consistent, and you'll see amazing progress!</p>
+    </div>
+</div>
+{% endblock %}

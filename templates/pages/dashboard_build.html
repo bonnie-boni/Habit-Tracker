@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Dashboard - Habit Tracker{% endblock %}
+
+{% block content %}
+<div class="dashboard-build">
+    <div class="dashboard-header">
+        <h1>{{ habit.name }}</h1>
+        <p class="subtitle">Keep up your reading habit</p>
+    </div>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-value">🔥 {{ current_streak }}</div>
+            <div class="stat-label">Current Streak</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">⭐ {{ best_streak }}</div>
+            <div class="stat-label">Best Streak</div>
+        </div>
+    </div>
+
+    <div class="today-status">
+        <h2>Today's Status</h2>
+        <div class="status-card">
+            <p>Keep the momentum going. Read something today!</p>
+            <a href="{% url 'read_page' %}" class="btn btn-primary">Start Reading</a>
+        </div>
+    </div>
+
+    <div class="progress-snapshot">
+        <h2>Recent Activity</h2>
+        <!-- Reading timeline will go here -->
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Content Library - Habit Tracker{% endblock %}
+
+{% block content %}
+<div class="content-list-page">
+    <div class="page-header">
+        <h1>Content Library</h1>
+        <p class="subtitle">Explore curated resources to support your habits</p>
+    </div>
+
+    <div class="filter-section">
+        <div class="filter-buttons">
+            <a href="?type=all" class="filter-btn {% if content_type == 'all' %}active{% endif %}">All</a>
+            <a href="?type=article" class="filter-btn {% if content_type == 'article' %}active{% endif %}">Articles</a>
+            <a href="?type=video" class="filter-btn {% if content_type == 'video' %}active{% endif %}">Videos</a>
+            <a href="?type=pdf" class="filter-btn {% if content_type == 'pdf' %}active{% endif %}">PDFs</a>
+        </div>
+    </div>
+
+    <div class="content-grid">
+        {% for content in contents %}
+            <div class="content-card">
+                {% if content.thumbnail %}
+                    <div class="content-thumbnail">
+                        <img src="{{ content.thumbnail }}" alt="{{ content.title }}">
+                    </div>
+                {% endif %}
+                <div class="content-info">
+                    <span class="content-type">{{ content.get_content_type_display }}</span>
+                    <h3>{{ content.title }}</h3>
+                    <p>{{ content.description|truncatewords:20 }}</p>
+                    {% if content.duration_minutes %}
+                        <span class="duration">⏱️ {{ content.duration_minutes }} min</span>
+                    {% endif %}
+                    <a href="{% url 'content:detail' content.id %}" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        {% empty %}
+            <p class="no-content">No content available in this category.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.content-list-page {
+    max-width: 1200px;
+}
+
+.filter-section {
+    margin-bottom: 2rem;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.content-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.content-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.content-thumbnail {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    background-color: var(--bg-primary);
+}
+
+.content-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content-info {
+    padding: 1.5rem;
+}
+
+.content-type {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.duration {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.no-content {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+}
+</style>
+{% endblock %}
